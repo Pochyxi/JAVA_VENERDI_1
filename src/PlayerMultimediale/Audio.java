@@ -8,6 +8,11 @@ public class Audio extends Player implements Volume {
     public Audio(String _title, int _durata) {
         super(_title, _durata);
         this.volume = 6;
+        this.tipo = "AUDIO";
+    }
+
+    public String getTipo() {
+        return this.tipo;
     }
 
 

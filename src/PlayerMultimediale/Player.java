@@ -4,6 +4,8 @@ abstract public class Player {
     protected String title;
     protected int durata;
 
+    protected String tipo;
+
     public Player(String _title, int _durata) {
         durata = _durata;
         title = _title;
@@ -11,9 +13,14 @@ abstract public class Player {
     public Player(String _title) {
         title = _title;
     }
+
+    public String getTipo() {
+        return this.tipo;
+    }
     public String getTitle() {
         return this.title;
     }
 
-    protected abstract void play ();
+    public abstract void play ();
+    public void show(){};
 }

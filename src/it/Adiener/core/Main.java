@@ -18,9 +18,41 @@ public class Main {
         Player[] playlist = {myVideo, myAudio, myImg, myAudio2, myVideo2};
 
         Scanner scanner = new Scanner ( System.in );
+
+
+        Player[] lista = new Player[5];
+        System.out.println ("Inserisci 5 file nella lista" );
+
+        for (int i = 0; i < lista.length; i++ ) {
+            System.out.println ("Di che tipo è il file numero " + (i + 1) + " ?" );
+            System.out.println ( """
+                    1.VIDEO \r
+                    2.AUDIO \r
+                    3.IMG
+                    """);
+            int tipoFile = Integer.parseInt( scanner.nextLine() );
+
+            System.out.println ("Dai un nome al tuo file numero " + (i + 1) );
+            String nomeFile = scanner.nextLine ( );
+
+            if(tipoFile == 1) {
+                System.out.println ("Indica la durata del tuo VIDEO" );
+                int durataVideo = Integer.parseInt ( scanner.nextLine ( ) );
+                lista[i] = new Video ( nomeFile, durataVideo );
+            } else if (tipoFile == 2) {
+                System.out.println ("Indica la durata del tuo AUDIO" );
+                int durataAudio = Integer.parseInt ( scanner.nextLine ( ) );
+                lista[i] = new Audio ( nomeFile, durataAudio );
+            } else if (tipoFile == 3) {
+                lista[i] = new Immagine ( nomeFile );
+            } else {
+                System.out.println ("Scegli un numero valido!!" );
+            }
+
+        }
         System.out.println ("Benvenuti ecco la vostra playList" );
 
-        getPlayList ( playlist );
+        getPlayList ( lista );
 
         System.out.println ("Scegli il numero da riprodurre, oppure 0 per uscire" );
 
@@ -38,22 +70,21 @@ public class Main {
                         numeroTraccia = -1;
                         break;
                     case 1:
-                        ((Video)playlist[0]).play ();
-
+                        riproduci ( lista[0] );
                         System.out.println ( "Riprodurre ancora? si o no?" );
                         String input0 = scanner.nextLine();
 
                         if (input0.equals ( "si" )) {
                             numeroTraccia = 1;
                         } else {
-                            getPlayList ( playlist );
+                            getPlayList ( lista );
                             System.out.println ("Scegli il numero da riprodurre, oppure 0 per uscire" );
                             numeroTraccia = Integer.parseInt( scanner.nextLine() );
                         }
                         break;
 
                     case 2:
-                        ((Audio)playlist[1]).play ();
+                        riproduci ( lista[1] );
 
                         System.out.println ( "Riprodurre ancora? si o no?" );
                         String input2 = scanner.nextLine();
@@ -61,14 +92,14 @@ public class Main {
                         if (input2.equals ( "si" )) {
                             numeroTraccia = 2;
                         } else {
-                            getPlayList ( playlist );
+                            getPlayList ( lista );
                             System.out.println ("Scegli il numero da riprodurre, oppure 0 per uscire" );
                             numeroTraccia = Integer.parseInt( scanner.nextLine() );
                         }
                         break;
 
                     case 3:
-                        ((Immagine)playlist[2]).show ();
+                        riproduci ( lista[2] );
 
                         System.out.println ( "Riprodurre ancora? si o no?" );
                         String input3 = scanner.nextLine();
@@ -76,14 +107,14 @@ public class Main {
                         if (input3.equals ( "si" )) {
                             numeroTraccia = 3;
                         } else {
-                            getPlayList ( playlist );
+                            getPlayList ( lista );
                             System.out.println ("Scegli il numero da riprodurre, oppure 0 per uscire" );
                             numeroTraccia = Integer.parseInt( scanner.nextLine() );
                         }
                         break;
 
                     case 4:
-                        ((Audio)playlist[3]).play ();
+                        riproduci ( lista[3] );
 
                         System.out.println ( "Riprodurre ancora? si o no?" );
                         String input4 = scanner.nextLine();
@@ -91,14 +122,14 @@ public class Main {
                         if (input4.equals ( "si" )) {
                             numeroTraccia = 4;
                         } else {
-                            getPlayList ( playlist );
+                            getPlayList ( lista );
                             System.out.println ("Scegli il numero da riprodurre, oppure 0 per uscire" );
                             numeroTraccia = Integer.parseInt( scanner.nextLine() );
                         }
                         break;
 
                     case 5:
-                        ((Video)playlist[4]).play ();
+                        riproduci ( lista[4] );
 
                         System.out.println ( "Riprodurre ancora? si o no?" );
                         String input5 = scanner.nextLine();
@@ -106,7 +137,7 @@ public class Main {
                         if (input5.equals ( "si" )) {
                             numeroTraccia = 5;
                         } else {
-                            getPlayList ( playlist );
+                            getPlayList ( lista );
                             System.out.println ("Scegli il numero da riprodurre, oppure 0 per uscire" );
                             numeroTraccia = Integer.parseInt( scanner.nextLine() );
                         }
@@ -115,7 +146,7 @@ public class Main {
                     default:
                         System.out.println ( "scegli un numero valido!" );
 
-                        getPlayList ( playlist );
+                        getPlayList ( lista );
                         System.out.println ("Scegli il numero da riprodurre, oppure 0 per uscire" );
                         numeroTraccia = Integer.parseInt( scanner.nextLine() );
                 }
@@ -130,6 +161,14 @@ public class Main {
     static void getPlayList(Player[] playlist) {
         for ( int i = 0; i < playlist.length; i++ ) {
             System.out.println ("" + (i + 1) + "." + playlist[i].getTitle () );
+        }
+    }
+
+    static void riproduci(Player file) {
+        if (file.getTipo ().equals ( "IMG" )) {
+            file.show();
+        } else {
+            file.play();
         }
     }
 }

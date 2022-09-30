@@ -9,12 +9,18 @@ public class Video extends Player implements Luminosità, Volume {
     private int volume;
     private int lum;
 
+
     public Video(String _title, int _durata){
         super(_title);
         durata = _durata;
         volume = 10;
         lum = 10;
+        tipo = "VIDEO";
 
+    }
+
+    public String getTipo() {
+        return this.tipo;
     }
 
     public void alzaVolume(int su) {

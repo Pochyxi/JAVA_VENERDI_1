@@ -8,6 +8,11 @@ public class Immagine extends Player implements Luminosità {
     public Immagine(String _title) {
         super(_title);
         luminosità = 10;
+        tipo = "IMG";
+    }
+
+    public String getTipo() {
+        return this.tipo;
     }
 
     public void play() {
