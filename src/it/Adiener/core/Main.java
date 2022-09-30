@@ -9,26 +9,23 @@ import java.util.Scanner;
 
 public class Main {
     public static void main ( String[] args ) {
-        Audio myAudio = new Audio ( "Wuki Wuki", 30 );
-        Immagine myImg = new Immagine ( "Io con il mio cane Bobby" );
-        Video myVideo = new Video ("Tape Sun", 23);
-        Audio myAudio2 = new Audio ( "Compleanno", 15 );
-        Video myVideo2 = new Video ("Cha Cha Cha", 40);
-
-        Player[] playlist = {myVideo, myAudio, myImg, myAudio2, myVideo2};
 
         Scanner scanner = new Scanner ( System.in );
 
 
         Player[] lista = new Player[5];
+
         System.out.println ("Inserisci 5 file nella lista" );
+
+        System.out.println ("------------------------------" );
 
         for (int i = 0; i < lista.length; i++ ) {
             System.out.println ("Di che tipo è il file numero " + (i + 1) + " ?" );
             System.out.println ( """
                     1.VIDEO \r
                     2.AUDIO \r
-                    3.IMG
+                    3.IMG \r
+                    ---------------------------
                     """);
             int tipoFile = Integer.parseInt( scanner.nextLine() );
 
@@ -50,6 +47,7 @@ public class Main {
             }
 
         }
+        System.out.println ("-----------------------------------" );
         System.out.println ("Benvenuti ecco la vostra playList" );
 
         getPlayList ( lista );
@@ -159,9 +157,11 @@ public class Main {
     }
 
     static void getPlayList(Player[] playlist) {
+        System.out.println ("-----------------------" );
         for ( int i = 0; i < playlist.length; i++ ) {
             System.out.println ("" + (i + 1) + "." + playlist[i].getTitle () );
         }
+        System.out.println ("-----------------------" );
     }
 
     static void riproduci(Player file) {
